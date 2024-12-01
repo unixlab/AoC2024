@@ -2,10 +2,11 @@
 package day01
 
 import (
-	"github.com/unixlab/AoC2024/internal/aoegeneric"
 	"sort"
 	"strconv"
 	"strings"
+
+	"github.com/unixlab/AoC2024/internal/aoegeneric"
 )
 
 // getSortedColumns reads the input and returns the columns as arrays
