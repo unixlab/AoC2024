@@ -95,11 +95,11 @@ func (g Guard) InGrid(grid [][]string) bool {
 	return true
 }
 
-// RunPart1 is for the first star of the day
-func RunPart1(input []string) int {
+// runPart is for the first star of the day
+func runPart(input []string, earlyExit bool) (int, int) {
 	var grid [][]string
 	var guard Guard
-	visited := make(map[Coordinate]struct{}, 2000)
+	visitedP1 := make(map[Coordinate]struct{}, 2000)
 	for y, line := range input {
 		var row []string
 		for x, field := range strings.Split(line, "") {
@@ -118,60 +118,58 @@ func RunPart1(input []string) int {
 				guard = guard.MoveBack()
 				guard = guard.Rotate()
 			} else {
-				visited[Coordinate{guard.PosX, guard.PosY}] = struct{}{}
+				visitedP1[Coordinate{guard.PosX, guard.PosY}] = struct{}{}
 			}
 		} else {
 			break
 		}
 	}
-	return len(visited)
+	if earlyExit {
+		return len(visitedP1), 0
+	}
+	guard = guard.Reset()
+	loop := 0
+	for cord := range visitedP1 {
+		y := cord.y
+		x := cord.x
+		if grid[y][x] == "#" {
+			continue
+		}
+		grid[y][x] = "#"
+		visitedP2 := make(map[Coordinate]int, 2000)
+		for {
+			guard = guard.Move()
+			if guard.InGrid(grid) {
+				if grid[guard.PosY][guard.PosX] == "#" {
+					guard = guard.MoveBack()
+					guard = guard.Rotate()
+				} else {
+					if visitedP2[Coordinate{guard.PosX, guard.PosY}] > 3 {
+						loop++
+						guard = guard.Reset()
+						break
+					} else {
+						visitedP2[Coordinate{guard.PosX, guard.PosY}]++
+					}
+				}
+			} else {
+				guard = guard.Reset()
+				break
+			}
+		}
+		grid[y][x] = "."
+	}
+	return len(visitedP1), loop
+}
+
+// RunPart1 is for the second star of the day
+func RunPart1(input []string) int {
+	result, _ := runPart(input, true)
+	return result
 }
 
 // RunPart2 is for the second star of the day
 func RunPart2(input []string) int {
-	var grid [][]string
-	var guard Guard
-	for y, line := range input {
-		var row []string
-		for x, field := range strings.Split(line, "") {
-			if field == "^" {
-				guard = guard.Init(y, x)
-				field = "."
-			}
-			row = append(row, field)
-		}
-		grid = append(grid, row)
-	}
-	loop := 0
-	for y := 0; y < len(grid); y++ {
-		for x := 0; x < len(grid[y]); x++ {
-			if grid[y][x] == "#" {
-				continue
-			}
-			grid[y][x] = "#"
-			visited := make(map[Coordinate]int, 2000)
-			for {
-				guard = guard.Move()
-				if guard.InGrid(grid) {
-					if grid[guard.PosY][guard.PosX] == "#" {
-						guard = guard.MoveBack()
-						guard = guard.Rotate()
-					} else {
-						if visited[Coordinate{guard.PosX, guard.PosY}] > 3 {
-							loop++
-							guard = guard.Reset()
-							break
-						} else {
-							visited[Coordinate{guard.PosX, guard.PosY}]++
-						}
-					}
-				} else {
-					guard = guard.Reset()
-					break
-				}
-			}
-			grid[y][x] = "."
-		}
-	}
-	return loop
+	_, result := runPart(input, false)
+	return result
 }
