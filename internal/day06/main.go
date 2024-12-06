@@ -5,15 +5,18 @@ import (
 	"strings"
 )
 
+// Coordinate is our struct to hold coordinates in our gird
 type Coordinate struct {
 	x int
 	y int
 }
 
-// 0 - up
-// 1 - left
-// 2 - down
-// 3 - right
+// Guard is a struct holding all data of a guard
+// States are:
+// 0 - moving up
+// 1 - moving left
+// 2 - moving down
+// 3 - moving right
 type Guard struct {
 	InitX int
 	InitY int
@@ -24,6 +27,7 @@ type Guard struct {
 	State int
 }
 
+// Init our guard with default values
 func (g Guard) Init(y int, x int) Guard {
 	var newGuard Guard
 	newGuard.InitX = x
@@ -36,18 +40,21 @@ func (g Guard) Init(y int, x int) Guard {
 	return newGuard
 }
 
+// Move the guard one step into its current direction
 func (g Guard) Move() Guard {
 	g.PosX += g.MoveX
 	g.PosY += g.MoveY
 	return g
 }
 
+// MoveBack the guard by inverting the last move
 func (g Guard) MoveBack() Guard {
 	g.PosX += g.MoveX * -1
 	g.PosY += g.MoveY * -1
 	return g
 }
 
+// Rotate the guard to the next state
 func (g Guard) Rotate() Guard {
 	switch g.State {
 	case 0:
@@ -70,6 +77,7 @@ func (g Guard) Rotate() Guard {
 	return g
 }
 
+// Reset the guard to the intial position
 func (g Guard) Reset() Guard {
 	g.PosX = g.InitX
 	g.PosY = g.InitY
@@ -79,6 +87,7 @@ func (g Guard) Reset() Guard {
 	return g
 }
 
+// InGrid checks if the guard is still in the grid
 func (g Guard) InGrid(grid [][]string) bool {
 	if g.PosX < 0 {
 		return false
@@ -95,7 +104,7 @@ func (g Guard) InGrid(grid [][]string) bool {
 	return true
 }
 
-// runPart is for the first star of the day
+// runPart runs both part1 and part2, but has an early exit if you only want to run part1
 func runPart(input []string, earlyExit bool) (int, int) {
 	var grid [][]string
 	var guard Guard
@@ -132,9 +141,6 @@ func runPart(input []string, earlyExit bool) (int, int) {
 	for cord := range visitedP1 {
 		y := cord.y
 		x := cord.x
-		if grid[y][x] == "#" {
-			continue
-		}
 		grid[y][x] = "#"
 		visitedP2 := make(map[Coordinate]int, 2000)
 		for {
