@@ -2,7 +2,6 @@
 package day08
 
 import (
-	"fmt"
 	"strings"
 
 	"gonum.org/v1/gonum/stat/combin"
@@ -56,8 +55,47 @@ func RunPart1(input []string) int {
 
 // RunPart2 is for the second star of the day
 func RunPart2(input []string) int {
-	for _, line := range input {
-		fmt.Println(line)
+	antennas := make(map[string][]Coordinate, 1000)
+	maxY := len(input)
+	maxX := 0
+	for y, row := range input {
+		maxX = len(row)
+		for x, cell := range strings.Split(row, "") {
+			if cell != "." {
+				antennas[cell] = append(antennas[cell], Coordinate{x: x, y: y})
+			}
+		}
 	}
-	return 0
+	for name, coord := range antennas {
+		for _, comb := range combin.Combinations(len(coord), 2) {
+			if name == "#" {
+				continue
+			}
+			xDiff := coord[comb[0]].x - coord[comb[1]].x
+			yDiff := coord[comb[0]].y - coord[comb[1]].y
+			newX := coord[comb[0]].x + xDiff
+			newY := coord[comb[0]].y + yDiff
+			for newX >= 0 && newY >= 0 && newX < maxX && newY < maxY {
+				antennas["#"] = append(antennas["#"], Coordinate{x: newX, y: newY})
+				newX = newX + xDiff
+				newY = newY + yDiff
+			}
+			xDiff = coord[comb[1]].x - coord[comb[0]].x
+			yDiff = coord[comb[1]].y - coord[comb[0]].y
+			newX = coord[comb[1]].x + xDiff
+			newY = coord[comb[1]].y + yDiff
+			for newX >= 0 && newY >= 0 && newX < maxX && newY < maxY {
+				antennas["#"] = append(antennas["#"], Coordinate{x: newX, y: newY})
+				newX = newX + xDiff
+				newY = newY + yDiff
+			}
+		}
+	}
+	uniqCoords := make(map[Coordinate]struct{}, len(antennas["#"]))
+	for _, antenna := range antennas {
+		for _, coord := range antenna {
+			uniqCoords[coord] = struct{}{}
+		}
+	}
+	return len(uniqCoords)
 }
