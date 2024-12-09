@@ -77,7 +77,7 @@ func (g Guard) Rotate() Guard {
 	return g
 }
 
-// Reset the guard to the intial position
+// Reset the guard to the initial position
 func (g Guard) Reset() Guard {
 	g.PosX = g.InitX
 	g.PosY = g.InitY
@@ -154,9 +154,8 @@ func runPart(input []string, earlyExit bool) (int, int) {
 						loop++
 						guard = guard.Reset()
 						break
-					} else {
-						visitedP2[Coordinate{guard.PosX, guard.PosY}]++
 					}
+					visitedP2[Coordinate{guard.PosX, guard.PosY}]++
 				}
 			} else {
 				guard = guard.Reset()
