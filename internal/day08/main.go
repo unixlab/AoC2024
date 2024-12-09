@@ -7,6 +7,7 @@ import (
 	"gonum.org/v1/gonum/stat/combin"
 )
 
+// Coordinate hold x y coordinates in a grid
 type Coordinate struct {
 	x int
 	y int
