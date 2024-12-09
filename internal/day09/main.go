@@ -12,7 +12,6 @@ type Chunk struct {
 	Idx    int
 	Length int
 	Free   bool
-	Moved  bool
 }
 
 // RunPart1 is for the first star of the day
@@ -86,10 +85,6 @@ func RunPart2(input []string) int {
 					head = head.Prev()
 					continue
 				}
-				if chunks[head.Value.(int)].Moved {
-					head = head.Prev()
-					continue
-				}
 				neededSpace := chunks[head.Value.(int)].Length
 				chunker := disk.Front()
 				for chunker != disk.Back() {
@@ -109,9 +104,7 @@ func RunPart2(input []string) int {
 					newChunk.Idx = chunks[idx].Idx
 					newChunk.Length = neededSpace
 					newChunk.Free = true
-					newChunk.Moved = true
 					chunks[idx].Length -= neededSpace
-					chunks[idx].Moved = true
 					newPos := disk.Front()
 					for newPos.Value.(int) != idx {
 						newPos = newPos.Next()
