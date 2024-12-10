@@ -21,10 +21,7 @@ func RunPart1(input []string) int {
 	for _, line := range input {
 		var row []int
 		for _, c := range strings.Split(line, "") {
-			n, err := strconv.Atoi(c)
-			if err != nil {
-				n = -1
-			}
+			n, _ := strconv.Atoi(c)
 			if n == 0 {
 				starts = append(starts, idx)
 			}
@@ -32,10 +29,7 @@ func RunPart1(input []string) int {
 				ends = append(ends, idx)
 			}
 			row = append(row, n)
-			err = dijkstraGraph.AddEmptyVertex(idx)
-			if err != nil {
-				panic(err)
-			}
+			_ = dijkstraGraph.AddEmptyVertex(idx)
 			idx++
 		}
 		grid = append(grid, row)
@@ -86,10 +80,7 @@ func RunPart2(input []string) int {
 	for _, line := range input {
 		var row []int
 		for _, c := range strings.Split(line, "") {
-			n, err := strconv.Atoi(c)
-			if err != nil {
-				n = -1
-			}
+			n, _ := strconv.Atoi(c)
 			if n == 0 {
 				starts = append(starts, idx)
 			}
@@ -97,10 +88,7 @@ func RunPart2(input []string) int {
 				ends = append(ends, idx)
 			}
 			row = append(row, n)
-			err = dfsGraph.AddVertex(idx)
-			if err != nil {
-				panic(err)
-			}
+			_ = dfsGraph.AddVertex(idx)
 			idx++
 		}
 		grid = append(grid, row)
