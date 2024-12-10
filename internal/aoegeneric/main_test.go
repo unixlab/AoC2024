@@ -55,3 +55,21 @@ func TestGetDistance(t *testing.T) {
 		t.Fatalf("GetDistance() = expected %v, got %v", expectedResult, actualResult)
 	}
 }
+
+func TestPow(t *testing.T) {
+	actualResult := Pow(2, 4)
+	expectedResult := 16
+	if !reflect.DeepEqual(actualResult, expectedResult) {
+		t.Fatalf("Pow() = expected %v, got %v", expectedResult, actualResult)
+	}
+	actualResult = Pow(10, 3)
+	expectedResult = 1000
+	if !reflect.DeepEqual(actualResult, expectedResult) {
+		t.Fatalf("Pow() = expected %v, got %v", expectedResult, actualResult)
+	}
+	actualResult = Pow(5, 2)
+	expectedResult = 25
+	if !reflect.DeepEqual(actualResult, expectedResult) {
+		t.Fatalf("Pow() = expected %v, got %v", expectedResult, actualResult)
+	}
+}

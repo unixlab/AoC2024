@@ -2,27 +2,22 @@
 package day08
 
 import (
+	"github.com/unixlab/AoC2024/internal/aoegeneric"
 	"strings"
 
 	"gonum.org/v1/gonum/stat/combin"
 )
 
-// Coordinate hold x y coordinates in a grid
-type Coordinate struct {
-	x int
-	y int
-}
-
 // RunPart1 is for the first star of the day
 func RunPart1(input []string) int {
-	antennas := make(map[string][]Coordinate, 1000)
+	antennas := make(map[string][]aoegeneric.Coordinate, 1000)
 	maxY := len(input)
 	maxX := 0
 	for y, row := range input {
 		maxX = len(row)
 		for x, cell := range strings.Split(row, "") {
 			if cell != "." {
-				antennas[cell] = append(antennas[cell], Coordinate{x: x, y: y})
+				antennas[cell] = append(antennas[cell], aoegeneric.Coordinate{X: x, Y: y})
 			}
 		}
 	}
@@ -31,23 +26,23 @@ func RunPart1(input []string) int {
 			if name == "#" {
 				continue
 			}
-			xDiff := coord[comb[0]].x - coord[comb[1]].x
-			yDiff := coord[comb[0]].y - coord[comb[1]].y
-			newX := coord[comb[0]].x + xDiff
-			newY := coord[comb[0]].y + yDiff
+			xDiff := coord[comb[0]].X - coord[comb[1]].X
+			yDiff := coord[comb[0]].Y - coord[comb[1]].Y
+			newX := coord[comb[0]].X + xDiff
+			newY := coord[comb[0]].Y + yDiff
 			if newX >= 0 && newY >= 0 && newX < maxX && newY < maxY {
-				antennas["#"] = append(antennas["#"], Coordinate{x: newX, y: newY})
+				antennas["#"] = append(antennas["#"], aoegeneric.Coordinate{X: newX, Y: newY})
 			}
-			xDiff = coord[comb[1]].x - coord[comb[0]].x
-			yDiff = coord[comb[1]].y - coord[comb[0]].y
-			newX = coord[comb[1]].x + xDiff
-			newY = coord[comb[1]].y + yDiff
+			xDiff = coord[comb[1]].X - coord[comb[0]].X
+			yDiff = coord[comb[1]].Y - coord[comb[0]].Y
+			newX = coord[comb[1]].X + xDiff
+			newY = coord[comb[1]].Y + yDiff
 			if newX >= 0 && newY >= 0 && newX < maxX && newY < maxY {
-				antennas["#"] = append(antennas["#"], Coordinate{x: newX, y: newY})
+				antennas["#"] = append(antennas["#"], aoegeneric.Coordinate{X: newX, Y: newY})
 			}
 		}
 	}
-	uniqCoords := make(map[Coordinate]struct{}, len(antennas["#"]))
+	uniqCoords := make(map[aoegeneric.Coordinate]struct{}, len(antennas["#"]))
 	for _, coord := range antennas["#"] {
 		uniqCoords[coord] = struct{}{}
 	}
@@ -56,14 +51,14 @@ func RunPart1(input []string) int {
 
 // RunPart2 is for the second star of the day
 func RunPart2(input []string) int {
-	antennas := make(map[string][]Coordinate, 1000)
+	antennas := make(map[string][]aoegeneric.Coordinate, 1000)
 	maxY := len(input)
 	maxX := 0
 	for y, row := range input {
 		maxX = len(row)
 		for x, cell := range strings.Split(row, "") {
 			if cell != "." {
-				antennas[cell] = append(antennas[cell], Coordinate{x: x, y: y})
+				antennas[cell] = append(antennas[cell], aoegeneric.Coordinate{X: x, Y: y})
 			}
 		}
 	}
@@ -72,27 +67,27 @@ func RunPart2(input []string) int {
 			if name == "#" {
 				continue
 			}
-			xDiff := coord[comb[0]].x - coord[comb[1]].x
-			yDiff := coord[comb[0]].y - coord[comb[1]].y
-			newX := coord[comb[0]].x + xDiff
-			newY := coord[comb[0]].y + yDiff
+			xDiff := coord[comb[0]].X - coord[comb[1]].X
+			yDiff := coord[comb[0]].Y - coord[comb[1]].Y
+			newX := coord[comb[0]].X + xDiff
+			newY := coord[comb[0]].Y + yDiff
 			for newX >= 0 && newY >= 0 && newX < maxX && newY < maxY {
-				antennas["#"] = append(antennas["#"], Coordinate{x: newX, y: newY})
+				antennas["#"] = append(antennas["#"], aoegeneric.Coordinate{X: newX, Y: newY})
 				newX = newX + xDiff
 				newY = newY + yDiff
 			}
-			xDiff = coord[comb[1]].x - coord[comb[0]].x
-			yDiff = coord[comb[1]].y - coord[comb[0]].y
-			newX = coord[comb[1]].x + xDiff
-			newY = coord[comb[1]].y + yDiff
+			xDiff = coord[comb[1]].X - coord[comb[0]].X
+			yDiff = coord[comb[1]].Y - coord[comb[0]].Y
+			newX = coord[comb[1]].X + xDiff
+			newY = coord[comb[1]].Y + yDiff
 			for newX >= 0 && newY >= 0 && newX < maxX && newY < maxY {
-				antennas["#"] = append(antennas["#"], Coordinate{x: newX, y: newY})
+				antennas["#"] = append(antennas["#"], aoegeneric.Coordinate{X: newX, Y: newY})
 				newX = newX + xDiff
 				newY = newY + yDiff
 			}
 		}
 	}
-	uniqCoords := make(map[Coordinate]struct{}, len(antennas["#"]))
+	uniqCoords := make(map[aoegeneric.Coordinate]struct{}, len(antennas["#"]))
 	for _, antenna := range antennas {
 		for _, coord := range antenna {
 			uniqCoords[coord] = struct{}{}

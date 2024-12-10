@@ -2,15 +2,11 @@
 package day07
 
 import (
-	"math"
+	"github.com/unixlab/AoC2024/internal/aoegeneric"
 	"math/big"
 	"strconv"
 	"strings"
 )
-
-func pow(a, b int) int {
-	return int(math.Pow(float64(a), float64(b)))
-}
 
 // RunPart1 is for the first star of the day
 func RunPart1(input []string) int {
@@ -26,7 +22,7 @@ func RunPart1(input []string) int {
 	}
 	sum := 0
 	for _, equation := range equations {
-		for i := 0; i < pow(2, len(equation)-2); i++ {
+		for i := 0; i < aoegeneric.Pow(2, len(equation)-2); i++ {
 			target := 0
 			mutations := i
 			mutationSum := 0
@@ -71,7 +67,7 @@ func RunPart2(input []string) int {
 	}
 	sum := big.NewInt(0)
 	for _, equation := range equations {
-		for i := 0; i < pow(4, len(equation)-2); i++ {
+		for i := 0; i < aoegeneric.Pow(4, len(equation)-2); i++ {
 			target := big.NewInt(0)
 			mutations := i
 			if mutations&3 == 3 {
