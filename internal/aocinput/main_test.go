@@ -1,4 +1,4 @@
-package aoeinput
+package aocinput
 
 import (
 	"os"

@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/unixlab/AoC2024/internal/aoegeneric"
+	"github.com/unixlab/AoC2024/internal/aocgeneric"
 
 	"github.com/RyanCarrier/dijkstra/v2"
 	"github.com/dominikbraun/graph"
@@ -50,7 +50,7 @@ func RunPart1(input []string) int {
 					if grid[y][x]+1 == grid[i][j] {
 						sourceArc := len(grid[y])*y + x
 						destinationArc := len(grid[i])*i + j
-						if aoegeneric.GetDistance(x, y, j, i) == 1 {
+						if aocgeneric.GetDistance(x, y, j, i) == 1 {
 							_ = dijkstraGraph.AddArc(sourceArc, destinationArc, 1)
 						}
 					}
@@ -109,7 +109,7 @@ func RunPart2(input []string) int {
 					if grid[y][x]+1 == grid[i][j] {
 						sourceArc := len(grid[y])*y + x
 						destinationArc := len(grid[i])*i + j
-						if aoegeneric.GetDistance(x, y, j, i) == 1 {
+						if aocgeneric.GetDistance(x, y, j, i) == 1 {
 							_ = dfsGraph.AddEdge(sourceArc, destinationArc)
 						}
 					}

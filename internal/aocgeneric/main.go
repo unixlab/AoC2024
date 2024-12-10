@@ -1,5 +1,5 @@
-// Package aoegeneric has generic function for AoC
-package aoegeneric
+// Package aocgeneric has generic function for AoC
+package aocgeneric
 
 import "math"
 

@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/unixlab/AoC2024/internal/aoeinput"
+	"github.com/unixlab/AoC2024/internal/aocinput"
 	"github.com/unixlab/AoC2024/internal/day05"
 )
 
@@ -17,7 +17,7 @@ var day05Cmd = &cobra.Command{
 		if err != nil {
 			panic(err)
 		}
-		input := aoeinput.Read("", cmd.Use, example)
+		input := aocinput.Read("", cmd.Use, example)
 		fmt.Printf("day05 part 1 => %d\n", day05.RunPart1(input))
 		fmt.Printf("day05 part 2 => %d\n", day05.RunPart2(input))
 	},

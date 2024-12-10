@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/unixlab/AoC2024/internal/aoegeneric"
+	"github.com/unixlab/AoC2024/internal/aocgeneric"
 )
 
 // getSortedColumns reads the input and returns the columns as arrays
@@ -28,7 +28,7 @@ func RunPart1(input []string) int {
 	columns := getSortedColumns(input)
 	var sum int
 	for i := 0; i < len(columns[0]); i++ {
-		sum += aoegeneric.AbsDiff(columns[0][i], columns[1][i])
+		sum += aocgeneric.AbsDiff(columns[0][i], columns[1][i])
 	}
 	return sum
 }

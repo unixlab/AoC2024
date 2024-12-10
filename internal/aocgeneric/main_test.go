@@ -1,4 +1,4 @@
-package aoegeneric
+package aocgeneric
 
 import (
 	"reflect"

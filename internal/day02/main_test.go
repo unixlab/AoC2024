@@ -3,7 +3,7 @@ package day02
 import (
 	"testing"
 
-	"github.com/unixlab/AoC2024/internal/aoeinput"
+	"github.com/unixlab/AoC2024/internal/aocinput"
 )
 
 func TestCheckIncreasing(t *testing.T) {
@@ -189,7 +189,7 @@ func TestCheckDecreasing(t *testing.T) {
 
 func TestRunPart1Example(t *testing.T) {
 	expectedResult := 2
-	actualResult := RunPart1(aoeinput.Read("../../", "day02", true))
+	actualResult := RunPart1(aocinput.Read("../../", "day02", true))
 	if actualResult != expectedResult {
 		t.Fatalf("RunPart1() = expected %v, got %v", expectedResult, actualResult)
 	}
@@ -197,7 +197,7 @@ func TestRunPart1Example(t *testing.T) {
 
 func TestRunPart1(t *testing.T) {
 	expectedResult := 526
-	actualResult := RunPart1(aoeinput.Read("../../", "day02", false))
+	actualResult := RunPart1(aocinput.Read("../../", "day02", false))
 	if actualResult != expectedResult {
 		t.Fatalf("RunPart1() = expected %v, got %v", expectedResult, actualResult)
 	}
@@ -205,7 +205,7 @@ func TestRunPart1(t *testing.T) {
 
 func TestRunPart2Example(t *testing.T) {
 	expectedResult := 4
-	actualResult := RunPart2(aoeinput.Read("../../", "day02", true))
+	actualResult := RunPart2(aocinput.Read("../../", "day02", true))
 	if actualResult != expectedResult {
 		t.Fatalf("RunPart2() = expected %v, got %v", expectedResult, actualResult)
 	}
@@ -213,7 +213,7 @@ func TestRunPart2Example(t *testing.T) {
 
 func TestRunPart2(t *testing.T) {
 	expectedResult := 566
-	actualResult := RunPart2(aoeinput.Read("../../", "day02", false))
+	actualResult := RunPart2(aocinput.Read("../../", "day02", false))
 	if actualResult != expectedResult {
 		t.Fatalf("RunPart2() = expected %v, got %v", expectedResult, actualResult)
 	}

@@ -1,5 +1,5 @@
-// Package aoeinput handles all the AoC input
-package aoeinput
+// Package aocinput handles all the AoC input
+package aocinput
 
 import (
 	"bufio"

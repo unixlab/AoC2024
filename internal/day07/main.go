@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/unixlab/AoC2024/internal/aoegeneric"
+	"github.com/unixlab/AoC2024/internal/aocgeneric"
 )
 
 // RunPart1 is for the first star of the day
@@ -23,7 +23,7 @@ func RunPart1(input []string) int {
 	}
 	sum := 0
 	for _, equation := range equations {
-		for i := 0; i < aoegeneric.Pow(2, len(equation)-2); i++ {
+		for i := 0; i < aocgeneric.Pow(2, len(equation)-2); i++ {
 			target := 0
 			mutations := i
 			mutationSum := 0
@@ -68,7 +68,7 @@ func RunPart2(input []string) int {
 	}
 	sum := big.NewInt(0)
 	for _, equation := range equations {
-		for i := 0; i < aoegeneric.Pow(4, len(equation)-2); i++ {
+		for i := 0; i < aocgeneric.Pow(4, len(equation)-2); i++ {
 			target := big.NewInt(0)
 			mutations := i
 			if mutations&3 == 3 {

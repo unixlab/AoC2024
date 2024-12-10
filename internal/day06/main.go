@@ -4,7 +4,7 @@ package day06
 import (
 	"strings"
 
-	"github.com/unixlab/AoC2024/internal/aoegeneric"
+	"github.com/unixlab/AoC2024/internal/aocgeneric"
 )
 
 // Guard is a struct holding all data of a guard
@@ -104,7 +104,7 @@ func (g Guard) InGrid(grid [][]string) bool {
 func runPart(input []string, earlyExit bool) (int, int) {
 	var grid [][]string
 	var guard Guard
-	visitedP1 := make(map[aoegeneric.Coordinate]struct{}, 2000)
+	visitedP1 := make(map[aocgeneric.Coordinate]struct{}, 2000)
 	for y, line := range input {
 		var row []string
 		for x, field := range strings.Split(line, "") {
@@ -123,7 +123,7 @@ func runPart(input []string, earlyExit bool) (int, int) {
 				guard = guard.MoveBack()
 				guard = guard.Rotate()
 			} else {
-				visitedP1[aoegeneric.Coordinate{X: guard.PosX, Y: guard.PosY}] = struct{}{}
+				visitedP1[aocgeneric.Coordinate{X: guard.PosX, Y: guard.PosY}] = struct{}{}
 			}
 		} else {
 			break
@@ -138,7 +138,7 @@ func runPart(input []string, earlyExit bool) (int, int) {
 		y := cord.Y
 		x := cord.X
 		grid[y][x] = "#"
-		visitedP2 := make(map[aoegeneric.Coordinate]int, 2000)
+		visitedP2 := make(map[aocgeneric.Coordinate]int, 2000)
 		for {
 			guard = guard.Move()
 			if guard.InGrid(grid) {
@@ -146,12 +146,12 @@ func runPart(input []string, earlyExit bool) (int, int) {
 					guard = guard.MoveBack()
 					guard = guard.Rotate()
 				} else {
-					if visitedP2[aoegeneric.Coordinate{X: guard.PosX, Y: guard.PosY}] > 3 {
+					if visitedP2[aocgeneric.Coordinate{X: guard.PosX, Y: guard.PosY}] > 3 {
 						loop++
 						guard = guard.Reset()
 						break
 					}
-					visitedP2[aoegeneric.Coordinate{X: guard.PosX, Y: guard.PosY}]++
+					visitedP2[aocgeneric.Coordinate{X: guard.PosX, Y: guard.PosY}]++
 				}
 			} else {
 				guard = guard.Reset()
