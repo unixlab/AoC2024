@@ -3,6 +3,8 @@ module github.com/unixlab/AoC2024
 go 1.23.3
 
 require (
+	github.com/RyanCarrier/dijkstra/v2 v2.0.2
+	github.com/dominikbraun/graph v0.23.0
 	github.com/spf13/cobra v1.8.1
 	gonum.org/v1/gonum v0.15.1
 )
