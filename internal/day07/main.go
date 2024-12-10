@@ -2,10 +2,11 @@
 package day07
 
 import (
-	"github.com/unixlab/AoC2024/internal/aoegeneric"
 	"math/big"
 	"strconv"
 	"strings"
+
+	"github.com/unixlab/AoC2024/internal/aoegeneric"
 )
 
 // RunPart1 is for the first star of the day

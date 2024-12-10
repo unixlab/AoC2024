@@ -2,8 +2,9 @@
 package day06
 
 import (
-	"github.com/unixlab/AoC2024/internal/aoegeneric"
 	"strings"
+
+	"github.com/unixlab/AoC2024/internal/aoegeneric"
 )
 
 // Guard is a struct holding all data of a guard
@@ -122,7 +123,7 @@ func runPart(input []string, earlyExit bool) (int, int) {
 				guard = guard.MoveBack()
 				guard = guard.Rotate()
 			} else {
-				visitedP1[aoegeneric.Coordinate{guard.PosX, guard.PosY}] = struct{}{}
+				visitedP1[aoegeneric.Coordinate{X: guard.PosX, Y: guard.PosY}] = struct{}{}
 			}
 		} else {
 			break
@@ -145,12 +146,12 @@ func runPart(input []string, earlyExit bool) (int, int) {
 					guard = guard.MoveBack()
 					guard = guard.Rotate()
 				} else {
-					if visitedP2[aoegeneric.Coordinate{guard.PosX, guard.PosY}] > 3 {
+					if visitedP2[aoegeneric.Coordinate{X: guard.PosX, Y: guard.PosY}] > 3 {
 						loop++
 						guard = guard.Reset()
 						break
 					}
-					visitedP2[aoegeneric.Coordinate{guard.PosX, guard.PosY}]++
+					visitedP2[aoegeneric.Coordinate{X: guard.PosX, Y: guard.PosY}]++
 				}
 			} else {
 				guard = guard.Reset()

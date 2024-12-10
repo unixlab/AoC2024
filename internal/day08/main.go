@@ -2,8 +2,9 @@
 package day08
 
 import (
-	"github.com/unixlab/AoC2024/internal/aoegeneric"
 	"strings"
+
+	"github.com/unixlab/AoC2024/internal/aoegeneric"
 
 	"gonum.org/v1/gonum/stat/combin"
 )
