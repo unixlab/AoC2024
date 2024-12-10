@@ -32,3 +32,26 @@ func TestAbsDiff(t *testing.T) {
 		t.Fatalf("AbsDiff() = expected %v, got %v", expectedResult, actualResult)
 	}
 }
+
+func TestGetDistance(t *testing.T) {
+	actualResult := GetDistance(0, 0, 0, 1)
+	expectedResult := 1
+	if !reflect.DeepEqual(actualResult, expectedResult) {
+		t.Fatalf("GetDistance() = expected %v, got %v", expectedResult, actualResult)
+	}
+	actualResult = GetDistance(0, 0, 1, 1)
+	expectedResult = 2
+	if !reflect.DeepEqual(actualResult, expectedResult) {
+		t.Fatalf("GetDistance() = expected %v, got %v", expectedResult, actualResult)
+	}
+	actualResult = GetDistance(0, 1, 3, 5)
+	expectedResult = 7
+	if !reflect.DeepEqual(actualResult, expectedResult) {
+		t.Fatalf("GetDistance() = expected %v, got %v", expectedResult, actualResult)
+	}
+	actualResult = GetDistance(1, 1, 0, 0)
+	expectedResult = 2
+	if !reflect.DeepEqual(actualResult, expectedResult) {
+		t.Fatalf("GetDistance() = expected %v, got %v", expectedResult, actualResult)
+	}
+}
