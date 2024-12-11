@@ -19,7 +19,7 @@ var day11Cmd = &cobra.Command{
 		}
 		input := aocinput.Read("", cmd.Use, example)
 		fmt.Printf("day11 part 1 => %d\n", day11.RunPart1(input))
-		fmt.Printf("day11 part 2 => %d\n", day11.RunPart2(input))
+		fmt.Printf("day11 part 2 => %d\n", day11.RunPart2(input, example))
 	},
 }
 

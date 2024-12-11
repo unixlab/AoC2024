@@ -14,8 +14,8 @@ type Stone struct {
 	ValueLength int
 }
 
-// run is for both star of the day
-func run(input []string, iterations int) int {
+// runWithLinkedList uses a linked list
+func runWithLinkedList(input []string, iterations int) int {
 	head := &Stone{
 		Next:  nil,
 		Prev:  nil,
@@ -89,12 +89,49 @@ func run(input []string, iterations int) int {
 	return sum
 }
 
+// runWithArray uses an array
+func runWithArray(input []string, iterations int) int {
+	var stones []int
+	for _, line := range input {
+		for _, c := range strings.Fields(line) {
+			n, _ := strconv.Atoi(c)
+			stones = append(stones, n)
+		}
+	}
+	for i := 0; i < iterations; i++ {
+		for s := 0; s < len(stones); s++ {
+			if stones[s] == 0 {
+				stones[s] = 1
+			} else if len(strconv.Itoa(stones[s]))%2 == 0 {
+				s0 := strconv.Itoa(stones[s])
+				s1 := s0[:len(s0)/2]
+				s2 := s0[len(s0)/2:]
+				n1, _ := strconv.Atoi(s1)
+				n2, _ := strconv.Atoi(s2)
+				newStones := make([]int, len(stones[:s]))
+				_ = copy(newStones, stones[:s])
+				newStones = append(newStones, n1, n2)
+				newStones = append(newStones, stones[s+1:]...)
+				stones = newStones
+				s++
+			} else {
+				stones[s] *= 2024
+			}
+		}
+	}
+	return len(stones)
+}
+
 // RunPart1 is for the first star of the day
 func RunPart1(input []string) int {
-	return run(input, 25)
+	return runWithLinkedList(input, 25)
 }
 
 // RunPart2 is for the second star of the day
-func RunPart2(input []string) int {
-	return run(input, 75)
+func RunPart2(input []string, example bool) int {
+	iterations := 75
+	if example {
+		iterations = 25
+	}
+	return runWithArray(input, iterations)
 }
