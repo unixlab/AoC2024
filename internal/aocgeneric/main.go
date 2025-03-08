@@ -1,12 +1,32 @@
 // Package aocgeneric has generic function for AoC
 package aocgeneric
 
-import "math"
+import (
+	"errors"
+	"math"
+)
 
 // Coordinate hold x y coordinates
 type Coordinate struct {
 	X int
 	Y int
+}
+
+type CoordinateQueue struct {
+	Coordinates []Coordinate
+}
+
+func (q *CoordinateQueue) Pop() (Coordinate, error) {
+	if len(q.Coordinates) == 0 {
+		return Coordinate{}, errors.New("queue empty")
+	}
+	c := q.Coordinates[0]
+	q.Coordinates = q.Coordinates[1:]
+	return c, nil
+}
+
+func (q *CoordinateQueue) Push(c Coordinate) {
+	q.Coordinates = append(q.Coordinates, c)
 }
 
 // AbsDiff returns the absolut difference between two integers
