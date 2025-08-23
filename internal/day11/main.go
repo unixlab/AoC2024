@@ -99,25 +99,22 @@ func runWithArray(input []string, iterations int) int {
 		}
 	}
 	for i := 0; i < iterations; i++ {
-		for s := 0; s < len(stones); s++ {
-			if stones[s] == 0 {
-				stones[s] = 1
-			} else if len(strconv.Itoa(stones[s]))%2 == 0 {
-				s0 := strconv.Itoa(stones[s])
+		var newStones []int
+		for _, stone := range stones {
+			if stone == 0 {
+				newStones = append(newStones, 1)
+			} else if len(strconv.Itoa(stone))%2 == 0 {
+				s0 := strconv.Itoa(stone)
 				s1 := s0[:len(s0)/2]
 				s2 := s0[len(s0)/2:]
 				n1, _ := strconv.Atoi(s1)
 				n2, _ := strconv.Atoi(s2)
-				newStones := make([]int, len(stones[:s]))
-				_ = copy(newStones, stones[:s])
 				newStones = append(newStones, n1, n2)
-				newStones = append(newStones, stones[s+1:]...)
-				stones = newStones
-				s++
 			} else {
-				stones[s] *= 2024
+				newStones = append(newStones, stone*2024)
 			}
 		}
+		stones = newStones
 	}
 	return len(stones)
 }
