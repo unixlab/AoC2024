@@ -23,9 +23,8 @@ var day14Cmd = &cobra.Command{
 			fmt.Println("day14 part 2 => (no example)")
 		} else {
 			fmt.Printf("day14 part 1 => %d\n", day14.RunPart1(input, 101, 103))
-			fmt.Printf("day14 part 2 => %d\n", day14.RunPart2(input))
+			fmt.Printf("day14 part 2 => %d\n", day14.RunPart2(input, 101, 103))
 		}
-
 	},
 }
 

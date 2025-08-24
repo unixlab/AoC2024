@@ -24,15 +24,15 @@ func TestRunPart1(t *testing.T) {
 
 func TestRunPart2Example(t *testing.T) {
 	expectedResult := 0
-	actualResult := RunPart2(aocinput.Read("../../", "day14", true))
+	actualResult := RunPart2(aocinput.Read("../../", "day14", true), 11, 7)
 	if actualResult != expectedResult {
 		t.Fatalf("RunPart2() = expected %v, got %v", expectedResult, actualResult)
 	}
 }
 
 func TestRunPart2(t *testing.T) {
-	expectedResult := 0
-	actualResult := RunPart2(aocinput.Read("../../", "day14", false))
+	expectedResult := 6398
+	actualResult := RunPart2(aocinput.Read("../../", "day14", false), 101, 103)
 	if actualResult != expectedResult {
 		t.Fatalf("RunPart2() = expected %v, got %v", expectedResult, actualResult)
 	}
