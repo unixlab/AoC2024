@@ -18,8 +18,14 @@ var day14Cmd = &cobra.Command{
 			panic(err)
 		}
 		input := aocinput.Read("", cmd.Use, example)
-		fmt.Printf("day14 part 1 => %d\n", day14.RunPart1(input))
-		fmt.Printf("day14 part 2 => %d\n", day14.RunPart2(input))
+		if example {
+			fmt.Printf("day14 part 1 => %d\n", day14.RunPart1(input, 11, 7))
+			fmt.Println("day14 part 2 => (no example)")
+		} else {
+			fmt.Printf("day14 part 1 => %d\n", day14.RunPart1(input, 101, 103))
+			fmt.Printf("day14 part 2 => %d\n", day14.RunPart2(input))
+		}
+
 	},
 }
 
